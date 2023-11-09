@@ -1,0 +1,32 @@
+<xml version="1.0" encoding="UTF-8">
+    <fila>
+        <nombre>"Francisco Alvarez"</nombre>
+        <Física>3.5</Física>
+        <Química>4.7</Química>
+        <Artes>3.9</Artes>
+    </fila>
+    <fila>
+        <nombre>"Juan Gonzalez"</nombre>
+        <Física>4.1</Física>
+        <Química>3.8</Química>
+        <Artes>4.5</Artes>
+    </fila>
+    <fila>
+        <nombre>"Mauricio Castro"</nombre>
+        <Física>3.2</Física>
+        <Química>3.4</Química>
+        <Artes>4.7</Artes>
+    </fila>
+    <fila>
+        <nombre>"Saray Lozano"</nombre>
+        <Física>4.5</Física>
+        <Química>4.3</Química>
+        <Artes>4.8</Artes>
+    </fila>
+    <fila>
+        <nombre>"Viviana Cáceres"</nombre>
+        <Física>3.9</Física>
+        <Química>4</Química>
+        <Artes>3.6</Artes>
+    </fila>
+</xml>
