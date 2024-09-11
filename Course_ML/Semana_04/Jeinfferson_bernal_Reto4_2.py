@@ -33,6 +33,7 @@ cultivos = {
 def obtener_nombres_cultivos():
     return list(cultivos.keys())
 
+
 # funcion que muestra el horario de gestion segun el cultivo dado
 def mostrar_gestion_cultivo(nombre_cultivo):
     cultivo = cultivos[nombre_cultivo]
@@ -40,6 +41,7 @@ def mostrar_gestion_cultivo(nombre_cultivo):
     print(f'Mantenimiento: {cultivo["Mantenimiento"]}')
     print(f'Regado: {cultivo["Regado"]}')
     print(f'Abono: {cultivo["Abono"]}')
+
 
 # funcion que muestra las etapas del cultivo seleccionado
 def mostrar_etapas_cultivo(nombre_cultivo):
@@ -49,10 +51,20 @@ def mostrar_etapas_cultivo(nombre_cultivo):
     for etapa in cultivo['Etapas']:
         print(f"{etapa['Nombre']}: {etapa['Duracion']}")
 
+
+# funcion para ingresar los costos y gastos fijos
+def ingresar_gastos_costos():
+    meses = 5
+    gastos_mensuales = []
+    costos_fijos = []
+
+
+
 # funcion que muestra la informacion contable del cultivo seleccionado
 def mostrar_info_contable(nombre_cultivo):
     print('\n--- Información Contable ---')
     print('Aquí se desarrollará la funcionalidad de información contable.\n')
+
 
 # funcion que muestra el menu de opciones
 def menu():
