@@ -1,0 +1,30 @@
+PUNTO 1:  
+Tome el enunciado y solución elaborada del reto 3, identifique si aplicó el 
+paradigma funcional, si lo aplicó correctamente, si faltaron funciones o pudieron 
+realizarse otras. Construya un documento que recopile las falencias, aciertos, dudas 
+y las dificultades que se le presentaron al aplicar los conceptos del paradigma 
+funcional a la solución del reto 3. En caso de no haber aplicado el paradigma funcional 
+en el reto 3, analice como pudiera aplicarlo, que funciones haría, que pasos debería 
+seguir para crear la solución bajo este paradigma y construya un documento tipo texto 
+con los resultados de este análisis y sugerencias; de tal forma que un programador pudiera 
+realizar dicha implementación bajo el paradigma funcional. 
+
+En el reto 3 no apliqué el paradigma funcional, todo fue resuelto mediante condicionales y ciclos 
+por lo que el código final resultó ser muy largo y un poco complicado de seguir. En los archivos
+'Jeinfferson_Bernal_Reto4.py' y 'Jeinfferson_Bernal_Reto4_2.py' resolvi el reto 3 implementando el
+paradigma funcional.
+
+Para iniciar, verifiqué las tareas repetitivas del código anterior y a partir de ello, cree varias funciones
+para realizar el mismo trabajo. Las funciones creadas son:
+
+- obtener_nombres_cultivos().
+- mostrar_gestion_cultivo().
+- mostrar_etapas_cultivo().
+- ingresar_gastos_costos().
+- mostrar_info_contable().
+- menu().
+
+Una vez creadas, pasé al ciclo while desde donde se llama a cada una de las funciones según su tarea,
+se verifica la opción seleccionada y se retorna lo requerido por el problema. Esta nueva solución brinda 
+una nueva perspectiva de cómo resolver problemas a través de funciones, ayudando a mejorar el seguimiento y
+entendimiento del código y reducir la cantidad de lineas implementadas.
