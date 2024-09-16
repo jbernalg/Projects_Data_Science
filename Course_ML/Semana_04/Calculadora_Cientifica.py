@@ -5,11 +5,17 @@ Desarrolle una calculadora científica que permita realizar las siguientes opera
 •	Operaciones aritméticas extendidas: son la división entera, el residuo, la exponenciación a la n de número, 
     Raíz n (n puede ser 2,3,4,5) de un número, Logaritmo en base 10, Logaritmo, Valor absoluto, 1/numero, Factorial.
 •	Operaciones Trigonométricas:  al menos dos, por ejemplo, seno(x), tangente(x).
-•	Operaciones estadísticas Básicas:  Promedio, media, mediana, moda.  
+•	Operaciones estadísticas Básicas:  Promedio, mediana, moda.  
 
 '''
  # libreria de operaciones matematicas
 import math 
+
+# funcion para saber si la parte decimal es cero
+def decimal_cero(numero):
+    parte_decimal, _ = math.modf(numero)
+    return parte_decimal == 0.0
+
 
 # funcion suma
 def operaciones_dosNumeros(num1, num2, opc):
@@ -95,10 +101,15 @@ def operaciones_unNumero(num, opc):
         
         # factorial
         elif opc == 13:
-            if num >=0 and type(num) == int:
-                return math.factorial(num)
+            if decimal_cero(num) == True:
+                int_num = int(num)
+                if int_num >=0:
+                    return math.factorial(num)
+                else:
+                    return 'Solo existe el factorial para numero enteros positivos'
             else:
-                return 'Solo existe el factorial para numero enteros positivos'
+                return 'El factorial se obtiene solo para numeros enteros'
+                
         
         # sen(x)
         elif opc == 14:
@@ -108,7 +119,8 @@ def operaciones_unNumero(num, opc):
         elif opc == 15:
             return math.tan(num)
 
-# estadistica    
+
+# promedio  opc = 16 
 def promedio():
     
     lista = []
@@ -123,6 +135,36 @@ def promedio():
                 print('Ingrese al menos un numero para promediarlo!')
         elif num.isdigit() == True:
             lista.append(float(num))
+        else:
+            print('Ingrese un valor numerico correcto')
+
+
+# mediana opc = 17
+def mediana():
+    
+    lista = []
+    while True:
+        
+        num = input('Ingrese numero o seleccione "=" para obtener la mediana de los numeros dados: ')
+        if num == '=':
+            if len(lista) > 0:
+                if len(lista) % 2 != 0:
+                    index = len(lista)//2
+                    print(lista[index])
+                    break
+                else:
+                    index_1 = (len(lista)//2) - 1
+                    index_2 = index_1 + 1
+                    print(lista[index_1], lista[index_2])
+                    break
+            else:
+                print('Ingrese al menos un numero para obtener la mediana')
+        
+        elif num.isdigit() == True:
+            lista.append(float(num))
+        else:
+            print('Ingrese un valor correcto! (Numerico)')
+
 
 
 def menu():
