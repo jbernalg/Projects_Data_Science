@@ -45,12 +45,21 @@ def operaciones_dosNumeros(num1, num2, opc):
 
 # funcion exponenciacion: opc = 7
 def exponenciacion(base, exp):
-    return math.pow(base, exp)
+    if base >= 0:
+        return math.pow(base, exp)
+    else:
+        return 'La operacion no esta definida para una base negativa'
 
 
 # funcion raiz opc = 8
 def raiz(num, root):
-    return num**1/root
+    if num < 0:
+        if root%2 != 0:
+            return math.pow(num, 1/root)
+        else:
+            return 'raiz no definida para valores negativos'
+    else:
+        return math.pow(num, 1/root)
 
 
 # operaciones aplicadas a solo un numero
@@ -61,25 +70,40 @@ def operaciones_unNumero(num, opc):
     else:
         # logaritmo base 10
         if opc == 9:
-            return math.log10(num)
+            if num > 0:
+                return math.log10(num)
+            else:
+                return 'operacion no definida para valores negativos o cero'
+        
         # logaritmo natural
         elif opc == 10:
-            return math.log(num)
+            if num > 0:
+                return math.log(num)
+            else:
+                return 'operacion no definida para valores negativos o cero'
+        
         # inversa de un numero
         elif opc == 11:
-            return 1/num
+            if num != 0:
+                return 1/num
+            else:
+                return 'la inversa de cero no esta definida'
+        
         # valor absoluto
         elif opc == 12:
             return math.fabs(num)
+        
         # factorial
         elif opc == 13:
             if num >=0 and type(num) == int:
                 return math.factorial(num)
             else:
                 return 'Solo existe el factorial para numero enteros positivos'
+        
         # sen(x)
         elif opc == 14:
             return math.sin(num)
+        
         # tangente(x)
         elif opc == 15:
             return math.tan(num)
