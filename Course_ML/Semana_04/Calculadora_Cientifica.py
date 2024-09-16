@@ -17,30 +17,35 @@ def decimal_cero(numero):
     return parte_decimal == 0.0
 
 
-# funcion suma
+# operaciones aplicadas a dos o mas numeros
 def operaciones_dosNumeros(num1, num2, opc):
     
     #suma
     if opc == 1:
         return num1 + num2
+    
     # resta
     elif opc == 2:
         return num1 - num2
+    
     # multiplicacion
     elif opc == 3:
         return num1*num2
+    
     # division
     elif opc == 4:
         if num2 != 0:
             return num1 / num2
         else:
             return 'Division por cero no es posible! Ingrese un divisor correcto'
+    
     # division entera
     elif opc == 5:
         if num2 != 0:
             return num1 // num2
         else:
             return 'Division por cero no es posible! Ingrese un divisor correcto'
+    
     # residuo
     elif opc == 6:
         if num2 != 0:
@@ -57,7 +62,7 @@ def exponenciacion(base, exp):
         return 'La operacion no esta definida para una base negativa'
 
 
-# funcion raiz opc = 8
+# funcion raiz: opc = 8
 def raiz(num, root):
     if num < 0:
         if root%2 != 0:
@@ -110,7 +115,6 @@ def operaciones_unNumero(num, opc):
             else:
                 return 'El factorial se obtiene solo para numeros enteros'
                 
-        
         # sen(x)
         elif opc == 14:
             return math.sin(num)
@@ -120,7 +124,7 @@ def operaciones_unNumero(num, opc):
             return math.tan(num)
 
 
-# promedio  opc = 16 
+# promedio:  opc = 16 
 def promedio():
     
     lista = []
@@ -139,7 +143,7 @@ def promedio():
             print('Ingrese un valor numerico correcto')
 
 
-# mediana opc = 17
+# mediana: opc = 17
 def mediana():
     
     lista = []
@@ -185,7 +189,8 @@ def menu():
     print("14. Seno de un numero")
     print("15. Tangente de un numero")
     print("16. Promedio")
-    print("17. Salir de la calculadora")
+    print("17. Mediana")
+    print("18. Salir de la calculadora")
     print("")
 
 
@@ -194,7 +199,7 @@ while True:
     menu()
     opcion = int(input('Seleccione una operacion: '))
 
-    if opcion == 17:
+    if opcion == 18:
         print('Saliendo del la calculadora!...')
         break
     
@@ -252,6 +257,8 @@ while True:
 
     elif opcion == 16:
         promedio()
+    elif opcion == 17:
+        mediana()
     else:
         print('Ingrese una opcion correcta!')
 
