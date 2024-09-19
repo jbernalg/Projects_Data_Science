@@ -56,8 +56,8 @@ def agregar():
             'Fecha_Nacimiento': fecha_na,
             'Nota1': n1,
             'Nota2': n2,
-            'nota3': n3,
-            'nota4': n4
+            'Nota3': n3,
+            'Nota4': n4
         }
 
         print('')
@@ -68,40 +68,17 @@ def agregar():
         if cond != 'y':
             break
 
-#agregar()
-#print(BD_estudiantes)
 
 # funcion que verifica si un estudiante esta en la BD
-def buscar(id, BD = BD_estudiantes):
+def buscar(ID, BD = BD_estudiantes):
 
-    if id in BD:
+    if ID in BD:
         return True
     else:
-        return False
-    
+        return False   
 
-    
-'''
-id_est = int(input('Ingrese el ID del estudiante a buscar: '))
 
-if buscar(id_est) == True:
-    print('')
-    print('#### Datos del Estudiante ####')
-    print('Nombre: ', BD_estudiantes[id_est]['Nombre'])
-    print('Correo', BD_estudiantes[id_est]['Correo'])
-    print('Telefono: ', BD_estudiantes[id_est]['Telefono'])
-    print('Fecha de Nacimiento: ', BD_estudiantes[id_est]['Fecha_Nacimiento'])
-    print('Nota 1: ', BD_estudiantes[id_est]['Nota1'])
-    print('Nota 2: ', BD_estudiantes[id_est]['Nota2'])
-    print('Nota 3: ', BD_estudiantes[id_est]['Nota3'])
-    print('Nota 4: ', BD_estudiantes[id_est]['Nota4'])
-    print('###############################')
-    print('')
-
-else:
-    print('El estudiante con ID ingresado no existe. Ingrese un Id correcto')
-'''
-
+# Funcion que permite modificar la nota de un estudiante a partir de su ID
 def modificar(ID):
     
     if buscar(ID) == True:
@@ -114,37 +91,39 @@ def modificar(ID):
         BD_estudiantes[ID]['Nota2'] = new_n2
         BD_estudiantes[ID]['Nota3'] = new_n3
         BD_estudiantes[ID]['Nota4'] = new_n4
+        print(f'Notas del estudiante {ID} has sido modificadas correctamente!')
 
     else:
-        print('Ingrese in ID correcto para modificar las notas del estudiante correspondiente')
+        print('El ID ingresado no existe. Ingrese un ID correcto!')
 
 
-#modificar(123)
-#print(BD_estudiantes)
-
+# Funcion que permite eliminar un estudiante de la BD a partir de su ID
 def cancelacion(ID):
 
     if buscar(ID) == True:
         BD_estudiantes.pop(ID)
+        print('Eliminacion Exitosa!')
     else:
         print('Ingrese el ID correcto del estudiante que desea eliminar')
 
-#cancelacion(124)
-#print(BD_estudiantes)
 
+# Funcion que muestra las notas de los resultados de un estudiante a partir de su ID
 def resultados(ID):
 
     if buscar(ID) == True:
-
+        
+        print('')
+        print(f'#### Resultados del estudiante {ID} ####')
+        print('')
         # nota final
         notaF = nota_final(ID)
-        print(notaF)
-
+        print(f'Nota Final del estudiante: {notaF}')
+        
         # nota promedio del grupo
         p_grupo = prom_grupo()
+        print(f'Nota Promedio del grupo: {p_grupo}')
 
-        # Verificar si esta por arria o por debajo del
-        # promedio general
+        # Verificar si esta por arriba o por debajo del promedio general
         if notaF > p_grupo:
             print('La nota final del estudiante esta por encima de promedio del grupo')
         elif notaF < p_grupo:
@@ -155,7 +134,7 @@ def resultados(ID):
         print('Ingrese un ID de estudiante valido')
 
 
-# promedio del grupo
+# Funcion que devuelve el promedio del grupo
 def prom_grupo(BD=BD_estudiantes):
 
     keys = BD.keys()
@@ -169,19 +148,20 @@ def prom_grupo(BD=BD_estudiantes):
 
     return promG
 
-# nota promedio del estudiante
+# Funcion que devuelve la nota promedio del estudiante
 def nota_final(ID, BD=BD_estudiantes):
 
     notaF = (BD[ID]['Nota1'] + BD[ID]['Nota2'] + BD[ID]['Nota3'] + BD[ID]['Nota4'])/4
     return notaF
 
 
-#resultados(124)
-
+# Funcion que muestra la estadistica de cada estudiante y del grupo en general
 def informe(BD=BD_estudiantes):
 
     keys = BD.keys()
     nf_estudiantes = []
+    print('######## INFORME GENERAL DE TODOS LOS ESTUDIANTES ########')
+    print('')
 
     print('#### Nota Final por estudiante ####')
     for i in keys:
@@ -196,7 +176,7 @@ def informe(BD=BD_estudiantes):
 
 
     print('')
-    sup, inf, equal = 0
+    sup, inf, equal = 0, 0, 0
     for i in nf_estudiantes:
         if i > promedio_grupo:
             sup += 1
@@ -238,7 +218,92 @@ def informe(BD=BD_estudiantes):
     print(f'Percentil 50: {pct_50}')
     print(f'Percentil 75: {pct_75}')
 
-informe()
+
+# funcion que muestra el menu
+def menu():
+
+    while True:
+        print('')
+        print('#### Administrador de Notas ####')
+        print('')
+        print('1. Agregar')
+        print('2. Buscar')
+        print('3. Modificar')
+        print('4. Cancelacion')
+        print('5. Resultados')
+        print('6. Informe')
+        print('0. Salir')
+        print('')
+        opcion = input('Seleccione una opcion: ')
+
+        if opcion.isdigit() == True and (int(opcion) >= 0 and int(opcion) < 7):
+            return int(opcion)
+        else:
+            print('Ingrese una opcion correcta')
+
+
+# ----------------------- inicio del programa -------------------------------
+while True:
+    
+        opc = menu()
+
+        if opc == 0:
+            print('Cerrando Programa ...')
+            break
         
+        elif opc == 1:
+            agregar()
+        
+        elif opc == 2:
+            ID = input('Ingrese ID del estudiante: ')
+
+            if ID.isdigit() == True:    
+                ID = int(ID)
+                if buscar(ID) == True:
+                    print('')
+                    print(f'#### Datos del Estudiante {ID} ####')
+                    print('Nombre: ', BD_estudiantes[ID]['Nombre'])
+                    print('Correo', BD_estudiantes[ID]['Correo'])
+                    print('Telefono: ', BD_estudiantes[ID]['Telefono'])
+                    print('Fecha de Nacimiento: ', BD_estudiantes[ID]['Fecha_Nacimiento'])
+                    print('Nota 1: ', BD_estudiantes[ID]['Nota1'])
+                    print('Nota 2: ', BD_estudiantes[ID]['Nota2'])
+                    print('Nota 3: ', BD_estudiantes[ID]['Nota3'])
+                    print('Nota 4: ', BD_estudiantes[ID]['Nota4'])
+                    print('###############################')
+                    print('')
+
+                else:
+                    print('El estudiante con ID ingresado no existe. Ingrese un ID correcto')
+            
+            else:
+                print('Los ID son numericos. Ingrese un ID correcto!')
+
+        elif opc == 3:
+            ID = input('Ingrese el ID del estudiante a modificar notas: ')
+            if ID.isdigit() == True:
+                modificar(int(ID))
+            else:
+                print('los IDs son numericos. Ingrese un ID correcto!')
+
+        elif opc == 4:
+            ID = input('Ingrese el ID del estudiante a eliminar de la BD: ')
+            if ID.isdigit() == True:
+                cancelacion(int(ID))
+            else:
+                print('Los IDs son numericos. Ingrese un ID correcto!')
+
+        elif opc == 5:
+            ID = input('Ingrese el ID del estudiante: ')
+            if ID.isdigit() == True:
+                resultados(int(ID))
+            else:
+                print('El ID ingresado no existe. Ingrese un ID correcto')
+        
+        elif opc == 6:
+            informe()
+
+
+
 
 
