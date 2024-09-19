@@ -1,7 +1,10 @@
 '''
 Administrador de Notas
+
+Iniciamos la base de datos llamada "BD_estudiantes" con 2 estudiantes agregados
 '''
 
+# Estudiante con ID = 123
 BD_estudiantes = {123: {'Nombre': 'Jose',
                         'Correo': 'xxxx',
                         'Telefono': 2033334,
@@ -12,9 +15,8 @@ BD_estudiantes = {123: {'Nombre': 'Jose',
                         'Nota4': 20
                         }}
 
-print(BD_estudiantes[123]['Nombre'])
 
-
+# estudiante con ID = 124
 BD_estudiantes[124] = {'Nombre': 'Miguel',
                         'Correo': 'xxxx',
                         'Telefono': 2012334,
@@ -24,9 +26,6 @@ BD_estudiantes[124] = {'Nombre': 'Miguel',
                         'Nota3': 14,
                         'Nota4': 18
                         }
-
-print(BD_estudiantes)
-print(BD_estudiantes.keys())
 
 
 # ---------------- funciones ---------------------
@@ -39,17 +38,19 @@ def agregar():
 
     while True:
 
-        id = int(input('Ingrese ID del nuevo estudiante: '))
-        nombre = input('Ingrese Nombre: ')
-        correo = input('Ingrese el correo: ')
-        telefono = int(input('Ingrese numero de telefono: '))
-        fecha_na = input('Ingrese fecha de nacimiento: ')
-        n1 = float(input('Ingrese Nota 1: '))
-        n2 = float(input('Ingrese Nota 2: '))
-        n3 = float(input('Ingrese Nota 3: '))
-        n4 = float(input('Ingrese Nota 4: '))    
+        ID = int(input('Ingrese ID del nuevo estudiante: '))
+        if ID in BD_estudiantes == False:
+            
+            nombre = input('Ingrese Nombre: ')
+            correo = input('Ingrese el correo: ')
+            telefono = int(input('Ingrese numero de telefono: '))
+            fecha_na = input('Ingrese fecha de nacimiento: ')
+            n1 = float(input('Ingrese Nota 1: '))
+            n2 = float(input('Ingrese Nota 2: '))
+            n3 = float(input('Ingrese Nota 3: '))
+            n4 = float(input('Ingrese Nota 4: '))
 
-        BD_estudiantes[id] = {
+            BD_estudiantes[ID] = {
             'Nombre': nombre,
             'Correo': correo,
             'Telefono': telefono,
@@ -58,7 +59,9 @@ def agregar():
             'Nota2': n2,
             'Nota3': n3,
             'Nota4': n4
-        }
+            }
+        else:
+            print('El ID ingresado ya existe. Ingrese un ID diferente!')    
 
         print('')
         print('Estudiante guardado exitosamente!')
@@ -91,7 +94,7 @@ def modificar(ID):
         BD_estudiantes[ID]['Nota2'] = new_n2
         BD_estudiantes[ID]['Nota3'] = new_n3
         BD_estudiantes[ID]['Nota4'] = new_n4
-        print(f'Notas del estudiante {ID} has sido modificadas correctamente!')
+        print(f'Notas del estudiante {ID} han sido modificadas correctamente!')
 
     else:
         print('El ID ingresado no existe. Ingrese un ID correcto!')
