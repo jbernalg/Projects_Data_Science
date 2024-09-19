@@ -9,10 +9,7 @@ BD_estudiantes = {123: {'Nombre': 'Jose',
                         'Correo': 'xxxx',
                         'Telefono': 2033334,
                         'Fecha_Nacimiento': '30-11',
-                        'Nota1': 12,
-                        'Nota2': 18,
-                        'Nota3': 16,
-                        'Nota4': 20
+                        'Notas': [12, 14, 18, 9.5]
                         }}
 
 
@@ -21,10 +18,7 @@ BD_estudiantes[124] = {'Nombre': 'Miguel',
                         'Correo': 'xxxx',
                         'Telefono': 2012334,
                         'Fecha_Nacimiento': '30-11',
-                        'Nota1': 10,
-                        'Nota2': 11,
-                        'Nota3': 14,
-                        'Nota4': 18
+                        'Notas': [16.6, 12.2, 18, 14]
                         }
 
 
@@ -39,8 +33,8 @@ def agregar():
     while True:
 
         ID = int(input('Ingrese ID del nuevo estudiante: '))
-        if ID in BD_estudiantes == False:
-            
+        
+        if (ID in BD_estudiantes) == False:    
             nombre = input('Ingrese Nombre: ')
             correo = input('Ingrese el correo: ')
             telefono = int(input('Ingrese numero de telefono: '))
@@ -55,19 +49,17 @@ def agregar():
             'Correo': correo,
             'Telefono': telefono,
             'Fecha_Nacimiento': fecha_na,
-            'Nota1': n1,
-            'Nota2': n2,
-            'Nota3': n3,
-            'Nota4': n4
+            'Notas': [n1, n2, n3, n4]
             }
+
+            print('')
+            print('Estudiante guardado exitosamente!')
         else:
             print('El ID ingresado ya existe. Ingrese un ID diferente!')    
 
         print('')
-        print('Estudiante guardado exitosamente!')
         cond = input('Presione "y" para agregar otro estudiante. \nCualquier otro caracter para ir al Menu principal: ')
-        print('')
-        print(' ')
+        
         if cond != 'y':
             break
 
@@ -90,10 +82,7 @@ def modificar(ID):
         new_n3 = int(input('Ingrese nueva nota 3: '))
         new_n4 = int(input('Ingrese nueva nota 4: '))
 
-        BD_estudiantes[ID]['Nota1'] = new_n1
-        BD_estudiantes[ID]['Nota2'] = new_n2
-        BD_estudiantes[ID]['Nota3'] = new_n3
-        BD_estudiantes[ID]['Nota4'] = new_n4
+        BD_estudiantes[ID]['Notas'] = [new_n1, new_n2, new_n3, new_n4]
         print(f'Notas del estudiante {ID} han sido modificadas correctamente!')
 
     else:
@@ -117,7 +106,6 @@ def resultados(ID):
         
         print('')
         print(f'#### Resultados del estudiante {ID} ####')
-        print('')
         # nota final
         notaF = nota_final(ID)
         print(f'Nota Final del estudiante: {notaF}')
@@ -144,7 +132,7 @@ def prom_grupo(BD=BD_estudiantes):
     sumaG = 0
 
     for i in keys:
-        prom_ind = (BD[i]['Nota1'] + BD[i]['Nota2'] + BD[i]['Nota3'] + BD[i]['Nota4'])/4
+        prom_ind = sum(BD[i]['Notas'])/4
         sumaG += prom_ind
     
     promG = sumaG/len(keys)
@@ -154,7 +142,7 @@ def prom_grupo(BD=BD_estudiantes):
 # Funcion que devuelve la nota promedio del estudiante
 def nota_final(ID, BD=BD_estudiantes):
 
-    notaF = (BD[ID]['Nota1'] + BD[ID]['Nota2'] + BD[ID]['Nota3'] + BD[ID]['Nota4'])/4
+    notaF = sum(BD[ID]['Notas'])/4
     return notaF
 
 
@@ -217,9 +205,22 @@ def informe(BD=BD_estudiantes):
     pct_25 = np.percentile(nf_estudiantes, 25)
     pct_50 = np.percentile(nf_estudiantes, 50)  # Este es equivalente a la mediana
     pct_75 = np.percentile(nf_estudiantes, 75)
-    print(f'Percentil 25: {pct_25}')
-    print(f'Percentil 50: {pct_50}')
-    print(f'Percentil 75: {pct_75}')
+
+    cant_25, cant_50, cant_75, cant_100 = 0, 0, 0, 0
+    for i in nf_estudiantes:
+        if i <= pct_25:
+            cant_25 += 1
+        elif i > pct_25 and i <= pct_50:
+            cant_50 += 1
+        elif i > pct_50 and i <= pct_75:
+            cant_75 += 1
+        else:
+            cant_100 += 1
+
+    print(f'Cantidad estudiantes en Percentil 25: {cant_25}')
+    print(f'Cantidad estudiantes en Percentil 50: {cant_50}')
+    print(f'Cantidad estudiantes en Percentil 75: {cant_75}')
+    print(f'Cantidad estudiantes en Percentil 100: {cant_100}')
 
 
 # funcion que muestra el menu
@@ -232,9 +233,9 @@ def menu():
         print('1. Agregar')
         print('2. Buscar')
         print('3. Modificar')
-        print('4. Cancelacion')
-        print('5. Resultados')
-        print('6. Informe')
+        print('4. Cancelacion de materia')
+        print('5. Resultados por estudiante')
+        print('6. Informe del grupo')
         print('0. Salir')
         print('')
         opcion = input('Seleccione una opcion: ')
@@ -269,10 +270,10 @@ while True:
                     print('Correo', BD_estudiantes[ID]['Correo'])
                     print('Telefono: ', BD_estudiantes[ID]['Telefono'])
                     print('Fecha de Nacimiento: ', BD_estudiantes[ID]['Fecha_Nacimiento'])
-                    print('Nota 1: ', BD_estudiantes[ID]['Nota1'])
-                    print('Nota 2: ', BD_estudiantes[ID]['Nota2'])
-                    print('Nota 3: ', BD_estudiantes[ID]['Nota3'])
-                    print('Nota 4: ', BD_estudiantes[ID]['Nota4'])
+                    print('Nota 1: ', BD_estudiantes[ID]['Notas'][0])
+                    print('Nota 2: ', BD_estudiantes[ID]['Notas'][1])
+                    print('Nota 3: ', BD_estudiantes[ID]['Notas'][2])
+                    print('Nota 4: ', BD_estudiantes[ID]['Notas'][3])
                     print('###############################')
                     print('')
 
@@ -305,8 +306,3 @@ while True:
         
         elif opc == 6:
             informe()
-
-
-
-
-
