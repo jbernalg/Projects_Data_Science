@@ -1,13 +1,9 @@
 '''
-#MiModulo.py
-Vamos a definir dos funciones aritmeticas
+Crear operaciones aritmeticas propias
 '''
 
-def suma(a,b):
-    '''Suma de dos numeros'''
-    return a+ b
+def suma(a, b):
+    return a + b
 
-
-def resta(a,b):
-    '''Resta de dos numeros'''
+def resta(a, b):
     return a - b
