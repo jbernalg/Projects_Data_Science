@@ -1,22 +1,9 @@
-'''
-Importar las funciones de MiModulo.py
-y operar con ellas
-'''
-import MiModulo
+# Prueba_Modulo.py
 
-print(MiModulo.suma(10, 23))
-print(MiModulo.resta(9,4))
+print("Importando modulo")
 
-'''
-Importar unicamente los componentes que nos interesa
-'''
-from MiModulo import suma
+def suma(a, b):
+    return a + b
 
-print(suma(12, 56))
-
-'''
-Importar todos los componentes de la libreria con *
-'''
-from MiModulo import *
-print(suma(12, 4))
-print(resta(2,1))
+def resta(a, b):
+    return a - b
