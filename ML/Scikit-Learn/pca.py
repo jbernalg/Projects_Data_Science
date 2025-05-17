@@ -30,4 +30,26 @@ if __name__ == '__main__':
     
     # dividir los datos en entrenamiento y prueba
     X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.3, random_state=42)
-    
+
+    # validar que los datos esten correctamente divididos
+    print(X_train.shape)
+    print(y_train.shape)
+
+    # configurar PCA
+    # si n_components no se define, PCA toma la cantidad total de features
+    pca = PCA(n_components=3)
+
+    # aplicar PCA a los datos de entrenamiento
+    pca.fit(X_train)
+
+    # configurar IPCA
+    ipca = IncrementalPCA(n_components=3, batch_size=10)
+
+    # aplicar IPCA a los datos de entrenamiento
+    ipca.fit(X_train)
+
+    # visualizar la varianza de los componentes que PCA extrae
+    plt.plot(range(len(pca.explained_variance_)), pca.explained_variance_ratio_)
+    plt.show() 
+
+
