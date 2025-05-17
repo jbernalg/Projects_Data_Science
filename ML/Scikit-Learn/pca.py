@@ -52,4 +52,26 @@ if __name__ == '__main__':
     plt.plot(range(len(pca.explained_variance_)), pca.explained_variance_ratio_)
     plt.show() 
 
+    # configurar regresion logistica
+    logistic = LogisticRegression(solver='lbfgs')
+
+    # aplicar PCA a los features de entrenamiento y de prueba
+    df_train = pca.transform(X_train)
+    df_test = pca.transform(X_test)
+
+    # aplicamos el modelos a ambos grupos de datos
+    logistic.fit(df_train, y_train)
+
+    # obtenemos una metrica para medir la efectividad del modelo
+    print('SCORE PCA: ', logistic.score(df_test, y_test))
+
+    # aplicar IPCA a los features de entrenamiento y de prueba
+    df_train = ipca.transform(X_train)
+    df_test = ipca.transform(X_test)
+
+    # aplicamos el modelos a ambos grupos de datos
+    logistic.fit(df_train, y_train)
+
+    # obtenemos una metrica para medir la efectividad del modelo
+    print('SCORE IPCA: ', logistic.score(df_test, y_test))
 
