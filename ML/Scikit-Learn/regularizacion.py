@@ -26,7 +26,7 @@ if __name__ == '__main__':
     print(y.shape)
 
     # dividir los datos en train y test
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 
     # definir modelo de regresion
     model_linear = LinearRegression().fit(X_train, y_train)
@@ -48,4 +48,22 @@ if __name__ == '__main__':
     # obtener predicciones del modelo con ridge
     y_pred_ridge = model_ridge.predict(X_test)
 
+    # Calcular perdida para cada modelo con la metrica error cuadratico medio
+    linear_loss = mean_squared_error(y_test, y_pred_linear)
+    print('Perdida lineal: ', linear_loss)
+
+    lasso_loss = mean_squared_error(y_test, y_pred_lasso)
+    print('Perdida lasso: ', lasso_loss)
+
+    ridge_loss = mean_squared_error(y_test, y_pred_ridge)
+    print('Perdida ridge: ', ridge_loss)
+
+    # mostrar en tiempo real el efecto de los features sobre cada regresion
+    print('='*32)
+    print('Coeficientes lasso')
+    print(model_lasso.coef_)
+
+    print('='*32)
+    print('Coeficientes ridge')
+    print(model_ridge.coef_) 
      
