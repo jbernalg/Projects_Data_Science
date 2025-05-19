@@ -24,3 +24,20 @@ if __name__ == '__main__':
     # verificar tamano de ambos conjuntos
     print(X.shape)
     print(y.shape)
+
+    # dividir los datos en train y test
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)
+
+    # definir modelo de regresion
+    model_linear = LinearRegression().fit(X_train, y_train)
+
+    # obtener predicciones del modelo de regresion
+    y_pred_linear = model_linear.predict(X_test)
+
+    # definir modelo con lasso
+    # alpha hace referencia al parametro lambda. Por defecto tiene valor 1
+    # a mayor alpha, mayor la penalizacion
+    model_lasso = Lasso(alpha=0.02).fit(X_train, y_train)
+    y_pred_lasso = model_lasso.predict(X_test)
+
+    # definr modelo con ridge
