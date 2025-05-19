@@ -38,6 +38,14 @@ if __name__ == '__main__':
     # alpha hace referencia al parametro lambda. Por defecto tiene valor 1
     # a mayor alpha, mayor la penalizacion
     model_lasso = Lasso(alpha=0.02).fit(X_train, y_train)
+
+    # obtener predicciones del modelo con lasso
     y_pred_lasso = model_lasso.predict(X_test)
 
     # definr modelo con ridge
+    model_ridge = Ridge(alpha=1).fit(X_train, y_train)
+
+    # obtener predicciones del modelo con ridge
+    y_pred_ridge = model_ridge.predict(X_test)
+
+     
