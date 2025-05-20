@@ -4,6 +4,7 @@ import sklearn
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Lasso
 from sklearn.linear_model import Ridge
+from sklearn.linear_model import ElasticNet
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
@@ -48,6 +49,12 @@ if __name__ == '__main__':
     # obtener predicciones del modelo con ridge
     y_pred_ridge = model_ridge.predict(X_test)
 
+    # definir modelo elasticNet
+    model_elastic = ElasticNet(alpha=0.02).fit(X_train, y_train)
+
+    # obtener predicciones del modelo elasticNet
+    y_pred_elastic = model_elastic.predict(X_test)
+
     # Calcular perdida para cada modelo con la metrica error cuadratico medio
     linear_loss = mean_squared_error(y_test, y_pred_linear)
     print('Perdida lineal: ', linear_loss)
@@ -58,6 +65,9 @@ if __name__ == '__main__':
     ridge_loss = mean_squared_error(y_test, y_pred_ridge)
     print('Perdida ridge: ', ridge_loss)
 
+    elastic_loss = mean_squared_error(y_test, y_pred_elastic)
+    print('Perdida ElasticNet: ', elastic_loss)
+
     # mostrar en tiempo real el efecto de los features sobre cada regresion
     print('='*32)
     print('Coeficientes lasso')
@@ -66,4 +76,8 @@ if __name__ == '__main__':
     print('='*32)
     print('Coeficientes ridge')
     print(model_ridge.coef_) 
+
+    print('='*32)
+    print('Coeficientes ElasticNet')
+    print(model_elastic.coef_)
      
