@@ -19,4 +19,13 @@ if __name__ == '__main__':
 
     # dividir los datos en entrenamiento y prueba
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.35, random_state=42)
-    
+
+    # definimos y entrenamos el clasificador KNN
+    knn_classifier = KNeighborsClassifier().fit(X_train, y_train)
+
+    # generamos las predicciones
+    knn_pred = knn_classifier.predict(X_test)
+
+    # evaluar modelo
+    print('='*64)
+    print('Accuracy KNN: ',accuracy_score(knn_pred, y_test))
