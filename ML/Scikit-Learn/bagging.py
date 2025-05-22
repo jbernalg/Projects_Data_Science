@@ -29,3 +29,15 @@ if __name__ == '__main__':
     # evaluar modelo
     print('='*64)
     print('Accuracy KNN: ',accuracy_score(knn_pred, y_test))
+
+    # definimos y entrenamos el ensamble
+    # basamos el ensamble en el clasificador KNN
+    # usamos 50 de estos modelos. Puede definirse por validacion cruzada
+    bag_class = BaggingClassifier(base_estimator=KNeighborsClassifier, n_estimators=50).fit(X_train, y_train)
+
+    # generamos predicciones
+    bag_pred = bag_class.predict(X_test)
+    
+    # evaluar ensamble
+    print('='*64)
+    print('Accuracy Ensamble: ',accuracy_score(bag_pred, y_test))
