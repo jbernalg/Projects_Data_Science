@@ -33,7 +33,7 @@ if __name__ == '__main__':
     # definimos y entrenamos el ensamble
     # basamos el ensamble en el clasificador KNN
     # usamos 50 de estos modelos. Puede definirse por validacion cruzada
-    bag_class = BaggingClassifier(base_estimator=KNeighborsClassifier, n_estimators=50).fit(X_train, y_train)
+    bag_class = BaggingClassifier(base_estimator=KNeighborsClassifier(), n_estimators=50).fit(X_train, y_train)
 
     # generamos predicciones
     bag_pred = bag_class.predict(X_test)
