@@ -12,6 +12,9 @@ from sklearn.svm import SVC
 from sklearn.linear_model import SGDClassifier
 from sklearn.tree import DecisionTreeClassifier
 
+# escalar los datos en el estimador Linear SVC
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
 
 # Script principal
 if __name__ == '__main__':
@@ -37,7 +40,7 @@ if __name__ == '__main__':
     # diccionario de estimadores
     classifier = {
         'KNeighbors': KNeighborsClassifier(),
-        'LinearSVC': LinearSVC(),
+        'LinearSVC': make_pipeline(StandardScaler(), LinearSVC(max_iter=10000)),
         'SVC': SVC(),
         'SGDC': SGDClassifier(),
         'DecisionTree': DecisionTreeClassifier()
@@ -48,5 +51,4 @@ if __name__ == '__main__':
         bag_class = BaggingClassifier(base_estimator=estimador, n_estimators=50).fit(X_train, y_train)
         bag_pred = bag_class.predict(X_test)
         print('='*64)
-        print(f'Accuracy Bagging con {estimador}: {accuracy_score(knn_pred, y_test)}')
-        
+        print(f'Accuracy Bagging con {name}: {accuracy_score(bag_pred, y_test)}')
