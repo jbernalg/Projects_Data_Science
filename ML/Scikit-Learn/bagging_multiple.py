@@ -44,4 +44,9 @@ if __name__ == '__main__':
     }
 
     # iteramos cada clasificador sobre el ensamble
-    
+    for name, estimador in classifier.items():
+        bag_class = BaggingClassifier(base_estimator=estimador, n_estimators=50).fit(X_train, y_train)
+        bag_pred = bag_class.predict(X_test)
+        print('='*64)
+        print(f'Accuracy Bagging con {estimador}: {accuracy_score(knn_pred, y_test)}')
+        
