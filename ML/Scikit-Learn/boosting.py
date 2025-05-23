@@ -18,3 +18,14 @@ if __name__ == '__main__':
 
     # dividir datos en entrenamiento y prueba
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.35, random_state=42)
+
+    # definir y entrenar modelo
+    # n_estimators: cantidad de arboles a utilizar
+    boots = GradientBoostingClassifier(n_estimators=50).fit(X_train, y_train)
+
+    # obtener predicciones
+    pred_boost = boots.predict(X_test)
+
+    # mostrar evaluacion del modelo
+    print('='*64)
+    print('Accuracy Gradient Boosting: ',accuracy_score(pred_boost, y_test))
