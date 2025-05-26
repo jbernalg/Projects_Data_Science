@@ -22,3 +22,9 @@ if __name__ == '__main__':
     # por defecto, crea 5 pliegue con los datos
     score = cross_val_score(model, X, y, cv=5, scoring='neg_mean_squared_error')
     print(score)
+
+    # obtenemos la media de los 5 scores de cada pliegue
+    print(np.mean(score))
+
+    # el score que interpretamos es el valor absoluto de la media anterior
+    print(np.abs(np.mean(score)))
