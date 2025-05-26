@@ -1,4 +1,5 @@
 import pandas as pd
+
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.ensemble import RandomForestRegressor
 
@@ -12,3 +13,10 @@ if __name__ == '__main__':
     reg = RandomForestRegressor()
 
     # definir grilla de parametro que usara el optimizador
+    parametros = {
+        'n_estimators': range(4,16), # rango de arboles
+        'criterion': ['mse', 'mae'], # medida de calidad
+        'max_depth': range(2, 11) # rango de limitacion del arbol
+    }
+
+    
