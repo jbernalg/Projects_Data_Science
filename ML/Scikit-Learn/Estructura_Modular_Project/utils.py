@@ -13,3 +13,6 @@ class Utils:
         X = dataset.drop(drop_cols, axis=1)
         y = dataset[y]
         return X,y
+    
+    def model_export(self, clf, score):
+        pass
