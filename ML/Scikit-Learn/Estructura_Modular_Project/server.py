@@ -7,6 +7,8 @@ from flask import jsonify
 # configurar servidor local
 app = Flask(__name__)
 
+model = joblib.load('./models/best_model_0.932.pkl')
+
 # postman para pruebas
 @app.route('/predict', methods=['GET'])
 def predict():
@@ -15,5 +17,4 @@ def predict():
     return jsonify({'prediccion': list(prediccion)})
 
 if __name__ == '__main__':
-    model = joblib.load('./models/best_model_0.932.pkl')
     app.run(port=8080)
