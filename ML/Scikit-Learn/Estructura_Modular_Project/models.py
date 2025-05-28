@@ -23,7 +23,7 @@ class Models:
                 'C':[1,5,10 ]
             },
             'GRADIENT': {
-                'loss': ['ls', 'lad'],
+                'loss': ['squared_error', 'absolute_error'],
                 'learning_rate': [0.01, 0.05, 0.1]
             }
         }
