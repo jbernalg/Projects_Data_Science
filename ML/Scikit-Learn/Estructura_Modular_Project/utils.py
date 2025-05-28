@@ -16,4 +16,5 @@ class Utils:
         return X,y
     
     def model_export(self, clf, score):
+        print(score)
         joblib.dump(clf, './models/best_model.pkl')
