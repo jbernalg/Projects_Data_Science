@@ -5,3 +5,4 @@ wordcloud
 sklearn
 gensim
 numpy
+scipy
